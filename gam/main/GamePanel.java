@@ -3,6 +3,7 @@ package main;
 
 import javax.swing.JPanel;
 
+import javafx.scene.shape.Rectangle;
 import main.inputs.KeyboardInputs;
 import main.inputs.MouseInputs;
 
@@ -10,13 +11,19 @@ import java.awt.Graphics;
 
 public class GamePanel extends JPanel{
     private MouseInputs mouseInputs;
-    private int dx = 0, dy = 0;
+    public static int dx = 500;
+    public static int dy = 500;
+    public static Rectangle rect = new Rectangle(300,150);
+    
+    
 
     public GamePanel(){
         mouseInputs = new MouseInputs(this);
         addKeyListener(new KeyboardInputs(this));
         addMouseListener(mouseInputs);
-        addMouseMotionListener(mouseInputs );
+        addMouseMotionListener(mouseInputs ); 
+        
+        
 
         
     }   
@@ -37,9 +44,10 @@ public class GamePanel extends JPanel{
     }
     
     public void paintComponent(Graphics g){
+        
         super.paintComponent(g);
-
-        g.fillRect(dx, dy, 300, 150);
+        g.fillRect(dx, dy, (int)rect.getWidth(),(int)rect.getHeight());
+        
     }
 
 }
