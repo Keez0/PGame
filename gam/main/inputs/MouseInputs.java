@@ -56,8 +56,17 @@ public class MouseInputs implements MouseListener, MouseMotionListener{
     public void mousePressed(MouseEvent e) {
         // TODO Auto-generated method stub
         System.out.println("mousePressed");
-        prevX = e.getX();
-        prevY = e.getY();
+        int w = (int)GamePanel.rect.getWidth();
+        int h = (int)GamePanel.rect.getHeight();
+        int x = GamePanel.dx;
+        int y = GamePanel.dy;
+        int mouseX = e.getX();
+        int mouseY = e.getY();
+        if(mouseX>x&&mouseX<x+w&&mouseY>y&&mouseY<y+h){
+            prevX = e.getX();
+            prevY = e.getY();
+        }
+        
 
 
         

@@ -2,7 +2,10 @@ package main;
 
 
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.awt.Dimension;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import main.inputs.KeyboardInputs;
 import main.inputs.MouseInputs;
@@ -14,6 +17,9 @@ public class GamePanel extends JPanel{
     public static int dx = 500;
     public static int dy = 500;
     public static Rectangle rect = new Rectangle(300,150);
+    JTextField textField = new JTextField();
+    
+    
     
     
 
@@ -24,9 +30,17 @@ public class GamePanel extends JPanel{
         addMouseMotionListener(mouseInputs ); 
         
         
+        textField.setSize(new Dimension(250,50));
+        
+        
+        
+        
+        
 
         
     }   
+
+    
 
     public void changeDX(int value){
         this.dx += value;
@@ -44,10 +58,11 @@ public class GamePanel extends JPanel{
     }
     
     public void paintComponent(Graphics g){
-        
         super.paintComponent(g);
         g.fillRect(dx, dy, (int)rect.getWidth(),(int)rect.getHeight());
-        
+
+         
     }
+
 
 }
