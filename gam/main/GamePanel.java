@@ -17,6 +17,7 @@ public class GamePanel extends JPanel{
     public static int dx = 500;
     public static int dy = 500;
     public static Rectangle rect = new Rectangle(300,150);
+    public static GameObject obj1 = new GameObject(rect, true, 500, 500);
     JTextField textField = new JTextField();
     
     
@@ -51,15 +52,25 @@ public class GamePanel extends JPanel{
         repaint();
 
     }
-    public void setRectPos(int x, int y){
-        this.dx = x;
-        this.dy = y;
+    public void setRectPos(GameObject obj, int x, int y){
+        obj.setX(x);
+        obj.setY(y);
+        /* 
+        if(obj1.getFreeFall()){
+            if(obj1.getY()<1000-obj1.getRect().getHeight()){
+                obj1.setY(obj1.getY()+1);
+            }
+        }
+        */
+        
+        
         repaint();
     }
     
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.fillRect(dx, dy, (int)rect.getWidth(),(int)rect.getHeight());
+        setRectPos(obj1, obj1.getX(), obj1.getY());
+        g.fillRect(obj1.getX(), obj1.getY(), (int)obj1.getRect().getWidth(),(int)obj1.getRect().getHeight());
 
          
     }

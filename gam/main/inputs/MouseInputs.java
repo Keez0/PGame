@@ -19,16 +19,16 @@ public class MouseInputs implements MouseListener, MouseMotionListener{
         
         int w = (int)GamePanel.rect.getWidth();
         int h = (int)GamePanel.rect.getHeight();
-        int x = GamePanel.dx;
-        int y = GamePanel.dy;
+        int x = GamePanel.obj1.getX();
+        int y = GamePanel.obj1.getY();
         int mouseX = e.getX();
         int mouseY = e.getY();
         if(mouseX>x&&mouseX<x+w&&mouseY>y&&mouseY<y+h){
-            //gamePanel.setRectPos(mouseX-(w+x-mouseX),mouseY-(h+y-mouseY));
+            
+            GamePanel.obj1.setFreeFall(false);
             if(prevX!= mouseX || prevY!= mouseY){
-                GamePanel.dx -= (prevX-mouseX);
-                GamePanel.dy -= (prevY-mouseY);
-                gamePanel.setRectPos(GamePanel.dx,GamePanel.dy);
+                
+                gamePanel.setRectPos(GamePanel.obj1,GamePanel.obj1.getX()-(prevX-mouseX),GamePanel.obj1.getY()-(prevY-mouseY));
                 prevX = mouseX;
                 prevY = mouseY;
             }
