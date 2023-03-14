@@ -3,6 +3,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import main.GameObject;
 import main.GamePanel;
 
 public class MouseInputs implements MouseListener, MouseMotionListener{
@@ -16,23 +17,27 @@ public class MouseInputs implements MouseListener, MouseMotionListener{
     @Override
     public void mouseDragged(MouseEvent e) {
         // TODO Auto-generated method stub
-        
-        int w = (int)GamePanel.rect.getWidth();
-        int h = (int)GamePanel.rect.getHeight();
-        int x = GamePanel.obj1.getX();
-        int y = GamePanel.obj1.getY();
-        int mouseX = e.getX();
-        int mouseY = e.getY();
-        if(mouseX>x&&mouseX<x+w&&mouseY>y&&mouseY<y+h){
+        GameObject[] referenceArray = GamePanel.gameObjectArray;
+        for(GameObject obj:referenceArray){
+            int w = (int)obj.rect.getWidth();
+            int h = (int)obj.rect.getHeight();
+            int x = obj.getX();
+            int y = obj.getY();
+            int mouseX = e.getX();
+            int mouseY = e.getY();
+            if(mouseX>x&&mouseX<x+w&&mouseY>y&&mouseY<y+h){
             
-            GamePanel.obj1.setFreeFall(false);
-            if(prevX!= mouseX || prevY!= mouseY){
+                obj.setFreeFall(false);
+                if(prevX!= mouseX || prevY!= mouseY){
                 
-                gamePanel.setRectPos(GamePanel.obj1,GamePanel.obj1.getX()-(prevX-mouseX),GamePanel.obj1.getY()-(prevY-mouseY));
-                prevX = mouseX;
-                prevY = mouseY;
+                    gamePanel.setRectPos(obj,obj.getX()-(prevX-mouseX),obj.getY()-(prevY-mouseY));
+                    prevX = mouseX;
+                    prevY = mouseY;
             }
         }
+
+        }
+        
         
         
         
@@ -56,16 +61,19 @@ public class MouseInputs implements MouseListener, MouseMotionListener{
     public void mousePressed(MouseEvent e) {
         // TODO Auto-generated method stub
         System.out.println("mousePressed");
-        int w = (int)GamePanel.rect.getWidth();
-        int h = (int)GamePanel.rect.getHeight();
-        int x = GamePanel.dx;
-        int y = GamePanel.dy;
-        int mouseX = e.getX();
-        int mouseY = e.getY();
-        if(mouseX>x&&mouseX<x+w&&mouseY>y&&mouseY<y+h){
-            prevX = e.getX();
-            prevY = e.getY();
+        GameObject[] referenceArray = GamePanel.gameObjectArray;
+        for(GameObject obj:referenceArray){
+            int w = (int)obj.rect.getWidth();
+            int h = (int)obj.rect.getHeight();
+            int x = obj.getX();
+            int y = obj.getY();
+            int mouseX = e.getX();
+            int mouseY = e.getY();
+            if(mouseX>x&&mouseX<x+w&&mouseY>y&&mouseY<y+h){
+                prevX = e.getX();
+                prevY = e.getY();
         }
+    }
         
 
 
@@ -79,6 +87,11 @@ public class MouseInputs implements MouseListener, MouseMotionListener{
     @Override
     public void mouseReleased(MouseEvent e) {
         // TODO Auto-generated method stub
+        GameObject[] referenceArray = GamePanel.gameObjectArray;
+        for(GameObject obj:referenceArray){
+            obj.setFreeFall(true);
+        }
+        
         
     }
 

@@ -4,7 +4,7 @@ import javafx.scene.shape.Rectangle;
 
 
 public class GameObject {
-    private Rectangle rect;
+    public Rectangle rect;
     private boolean freeFall;
     private int x;
     private int y;

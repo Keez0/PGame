@@ -3,6 +3,8 @@ package main;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.plaf.synth.SynthScrollBarUI;
+
 import java.awt.Dimension;
 
 import javafx.scene.paint.Color;
@@ -11,14 +13,20 @@ import main.inputs.KeyboardInputs;
 import main.inputs.MouseInputs;
 
 import java.awt.Graphics;
+import java.util.concurrent.SynchronousQueue;
 
 public class GamePanel extends JPanel{
     private MouseInputs mouseInputs;
     public static int dx = 500;
     public static int dy = 500;
     public static Rectangle rect = new Rectangle(300,150);
-    public static GameObject obj1 = new GameObject(rect, true, 500, 500);
+    public static Rectangle rect2 = new Rectangle(400,400);
+
+    public static GameObject obj1 = new GameObject(rect, true, 0, 0);
+    public static GameObject obj2 = new GameObject(rect2, true, 600, 600);
+    public static GameObject[] gameObjectArray = {obj1,obj2};
     JTextField textField = new JTextField();
+
     
     
     
@@ -55,13 +63,17 @@ public class GamePanel extends JPanel{
     public void setRectPos(GameObject obj, int x, int y){
         obj.setX(x);
         obj.setY(y);
-        /* 
-        if(obj1.getFreeFall()){
-            if(obj1.getY()<1000-obj1.getRect().getHeight()){
-                obj1.setY(obj1.getY()+1);
+        
+
+        for(GameObject object:gameObjectArray){
+            if(object.getFreeFall()){
+                if(object.getY()<1000-object.getRect().getHeight()){
+                    object.setY(object.getY()+1);
+                }
             }
         }
-        */
+        
+        
         
         
         repaint();
@@ -71,7 +83,7 @@ public class GamePanel extends JPanel{
         super.paintComponent(g);
         setRectPos(obj1, obj1.getX(), obj1.getY());
         g.fillRect(obj1.getX(), obj1.getY(), (int)obj1.getRect().getWidth(),(int)obj1.getRect().getHeight());
-
+        g.fillRect(obj2.getX(), obj2.getY(), (int)obj2.getRect().getWidth(), (int)obj2.getRect().getHeight());
          
     }
 
